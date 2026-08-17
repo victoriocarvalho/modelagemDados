@@ -1,0 +1,45 @@
+﻿Atividade de Modelagem Conceitual de Dados
+
+
+
+
+Desenvolva um modelo ER para cada um dos cenários abaixo utilizando para isso o BRModelo. Faça uma cópia deste arquivo e inclua após cada descrição de cenário a imagem do seu modelo. Após isso gere um PDF do seu arquivo e poste no Ava.
+
+
+Atenção: Atividade Individual! 
+
+
+
+
+Cenário 1 – Controle bancário
+
+
+Desenvolva um modelo conceitual para um sistema de controle bancário. 
+O sistema deve armazenar dados de várias agências. De cada agência deseja-se armazenar seu número, cidade e dados sobre os funcionários que ali trabalham, tais como nome, endereço, código e salário. 
+Cada funcionário trabalha em uma e apenas uma agência. Sobre os clientes deseja-se armazenar o nome, o RG e a cidade na qual residem. 
+Para ser cliente é necessário ser titular de ao menos uma conta. As contas podem ser simples ou conjuntas. A única diferença entre elas está no fato de que as contas simples têm apenas um cliente titular enquanto as contas conjuntas têm mais de um cliente titular. Sobre cada conta deseja-se armazenar, além do(s) cliente(s) titulares, a agência à qual a conta é vinculada, o número da conta e o saldo. 
+Cada cliente é vinculado a uma agência, mas podem ser titulares de contas em várias agências. Por fim, deseja-se armazenar o histórico de transações da conta. Sobre cada transação deseja-se armazenar, além da(s) conta(s) envolvida(s), o número da transação, a data e o valor. Há três tipos de transações: depósito, saque e transferência. Transações de depósito geram um crédito na conta, saques geram débitos na conta e transferências geram crédito em uma conta e débito em outra.
+
+
+
+
+Cenário 2 – Produção cinematográfica 
+
+
+A agência nacional de cinema deseja desenvolver um sistema para manter um cadastro dos estúdios cinematográficos e suas produções e você deve desenvolver um modelo conceitual para tal sistema. 
+Cada estúdio cinematográfico é um caracterizado por um nome, um cnpj(que não se repete), uma data de fundação e o faturamento do ano anterior. Estes estúdios produzem filmes. 
+De cada filme deseja-se saber o título, o número do "copyright" (que o identifica unicamente), o número de meses que levou sendo feito, o ano de lançamento, e o custo total do filme. Os estúdios podem se associar, de forma que um filme pode ser produzido por mais de um estúdio. 
+Deseja-se também armazenar dados sobre os atores. De cada ator sabe-se o nome, o nome artístico, um número de seguro social/cpf (que o identifica unicamente), uma nacionalidade, idade e sexo. A agência mantém também uma lista de tipos de papéis (ex: avó, mocinha jovem, galã com idade avançada, adolescente) e, para cada ator, informa-se quais desses tipos de papéis são adequados ao seu tipo físico. 
+Os atores podem atuar em vários filmes. Para cada atuação de um ator em um filme deve-se saber o nome do personagem, a importância do personagem (protagonista ou coadjuvante), a idade do ator na época do lançamento do filme e o valor do cachê recebido pelo ator. 
+Estúdios podem existir mesmo que ainda não tiverem produzido um filme, mas só são considerados atores os que já atuaram em pelo menos um filme 
+
+
+Cenário 3 – Loja de Peças Automotivas 
+
+
+João, José e Maria são três irmãos, técnicos em informática, que decidiram desenvolver um sistema para ajudar seu pai a gerenciar a loja de peças automotivas da família. Além de seu pai, trabalham na loja de peças dois funcionários (vendedores). 
+A fim de viabilizar o controle de compras e vendas o sistema deve permitir o cadastro das peças. Sobre cada peça deseja-se saber o código, a descrição, os fornecedores, o preço atual de venda e os estoques mínimo e máximo desejável. Ademais, o sistema deve guardar um histórico dos preços de vendas das peças que nos permita saber qual era o preço de venda de cada peça em uma determinada data.
+O sistema também deve manter cadastro dos fornecedores e de clientes a fim de facilitar o contato com os mesmos. Sobre os fornecedores deseja-se saber o nome, o cnpj, o endereço, o nome da pessoa de contato, os telefones e o email. Já sobre os clientes deseja-se saber nome, cpf, endereço, telefone e e-mail.
+O sistema deve apoiar o registro de compras e vendas. Sobre cada venda deve-se registrar a data da venda, para qual cliente a venda foi efetuada, a forma de pagamento (cartão ou dinheiro), os produtos vendidos e, para cada produto vendido, a quantidade e o preço unitário de venda. Ademais, deve ser possível estornar vendas que tenham sido registradas erroneamente. Ao ser estornada a venda não pode ser excluída do sistema, sendo apenas marcada como estornada. 
+Já sobre as compras deve-se registrar a data, o fornecedor do qual se comprou, os produtos comprados e, para cada produto, a quantidade e o valor unitário de compra. É desejado que o sistema proveja consultas e relatórios sobre as vendas efetuadas. Esses relatórios/consultas devem permitir a apuração de peças mais vendidas por período, quantidade média mensal vendida de cada peça por período, quantidade de cada peça em estoque e outras informações que possam ajudar no planejamento de compras e vendas. Ainda visando a ajudar nesse planejamento, o sistema deve avisar ao administrador quando uma peça tiver estoque abaixo do estoque mínimo desejável.
+O acesso a todo o sistema deve ser controlado por senha havendo dois perfis de acesso: (i) vendedores, que terão acesso ao cadastro de clientes, consultas a produtos e registro de vendas; e (ii) administradores, que terão acesso a todo o sistema. De casa usuário do sistema deseja-se armazenar o nome, o login, a senha e o tipo (vendedor ou administrador).

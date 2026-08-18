@@ -52,3 +52,5 @@ Assim, um relacionamento pode ser representado como (cardinalidade_mínima, card
 4. **Caso de estudo**: No cenário da clínica, como seria se o relacionamento entre **Animal de Estimação** e **Consulta** fosse de muitos-para-muitos (N:N) em vez de um-para-muitos (1:N)? Qual seria o significado disso no mundo real? Faria sentido para o sistema da clínica?
 
 **Bom trabalho!**
+
+[Voltar para a Aula 1](dinamica1.md)

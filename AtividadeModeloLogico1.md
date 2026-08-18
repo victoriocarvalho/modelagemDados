@@ -87,3 +87,5 @@ Refletindo sobre a definição de chave primária, responda:
 5. Quais são os prós e contras de usar `id_cliente` do tipo inteiro como chave primária em vez de `cpf` do tipo varchar?
 
 **Bom trabalho!**
+
+[Voltar para a Aula 1](dinamica1.md)

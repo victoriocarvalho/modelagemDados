@@ -77,3 +77,34 @@ Passos
 - Abra as tabelas no modo de "dados" do DBeaver e insira registros. Tente inserir um animal informando um id_cliente inexistente. Foi possível?
 
 - Insira agora 2 registros de clientes e 2 de animais (um relacionado a cada cliente). Em seguida tente excluir os dados de um dos clientes? O que aconteceu? O banco aceitou? Se sim, o que aconteceu com o registro do animal associado ao cliente excluído? Por que?
+
+## Aula 2
+Foco Conceitual - Discutir relacionamentos n para n sem atributos e com atributos
+
+## Aula 3
+Foco Conceitual - Discutir a possibilidade de termos mais de um relacionamento entre duas entidades e a necessidade de dados históricos (snapshot vs. histórico)
+
+## Aula 4
+Foco Conceitual - Atributos compostos e multivalorados (conceitos e representação)
+
+Discussão: Atributo composto ou entidade?
+
+Foco Lógico - Como transformar atributos compostos e multivalorados do lógico para o conceitual (note que os multivalorados darão origem a tabelas, assim como uma entidade daria)
+
+## Aula 5
+Foco Conceitual - Entidade vs. atributos (usar o domínio da aula 1 - separamos cliente de animal ao inves de colocar os dados no cliente no animal (mesmo cada animal sendo de 1 cliente) mas colocamos tipo de animal e raça em animal, mesmo a raça dependendo unicamente do tipo e havendo repetições...)
+
+Entidade vs. Relacionamento (usar o exemplo da aula 3 quando fizemos um relacionamento funcionario colabora em projeto, com atributos na colaboracao ao invés de criar a entidade colaboração.)
+
+Foco Lógico - Falar de formas normais. No exemplo do tipo e raça de animal, a versão da aula 1 quebrava uma forma normal na medida que a raça dependia exclusivamente de um atributo que não era chave primária da tabela. 
+Mostrar como a transformação de relacionamento com atributos é a mesma de uma classe quebrando o n para n em dois relacionamentos...
+
+## Aula 6 (não teria no técnico)
+Foco Conceitual - Autorelacionamento e papeis (vamos colocar no modelo da aula anterior uma autorelação "supervisor" 1 para n na classe funcionário). Ressaltar a importância dos papéis nesses casos.
+Foco Lógico - Mostrar como a transformação se dá como se fossem duas tabelas Funcionario...
+
+## Aula 7 (não teria no técnico)
+Foco Conceitual - Herança
+Foco Lógico - Como mapear herança
+
+Fazer aqui um modelo grande...

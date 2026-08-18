@@ -1,6 +1,6 @@
 # Atividade de Modelagem Conceitual de Dados
 
-## MER - Múltiplos Relacionamentos entre Mesmas Entidades
+## MER - Múltiplos Relacionamentos entre Mesmas Entidades e Necessidade de dados históricos (snapshot vs. histórico)
 
 **Atividade Individual**
 

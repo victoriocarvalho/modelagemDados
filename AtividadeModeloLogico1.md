@@ -88,4 +88,4 @@ Refletindo sobre a definição de chave primária, responda:
 
 **Bom trabalho!**
 
-[Voltar para a Aula 1](dinamica1.md)
+[Voltar para o Arquivo Principal da Dinâmica 1](dinamica1.md)

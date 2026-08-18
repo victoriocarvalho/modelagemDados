@@ -46,3 +46,34 @@ link para atividadeMER1.md
 
     - Além da chave estrangeira, criamos também uma **restrição de integridade referencial**. A **restrição de integridade referencial** serve para evitar inconsistência de dados entre as chaves estrangeiras e primárias do seu banco
 - Ilustrar os conceitos desta teoria com o exemplo da atividadeMER1.md
+
+### Conteudos de Modelo Físico
+
+- O modelo físico será feito em forma de um script SQL
+- Falar aqui do conceito de SQL
+- Falar que nesse momento vamos ver apenas a parte DDL (Data Description Language) do SQL
+- SQL DDL é utilizado para definir o esquema do banco. introduzir o conceito de Esquema
+- Vamos criar tabelas e restrições de integridade.
+- Vamos gerar o script utilizando a geração automatica do BrModelo e executar no nosso banco do Aiven, conectando pelo DBeaver.
+
+### Prática de Modelo Físico
+
+Passos
+- Crie um novo banco de dados no seu serviço do aiven.io:
+    1 - Faça login no aiven
+    2 - Verifique que seu serviço esteja rodando
+    3 - Clique sobre o nome do seu serviço para abrir os detalhes
+    4 - Na barra do lado direito selecione a opção databases e depois clique em adicionar database.
+    5 - Defina o nome "dinamica1" para seu banco de dados.
+- Agora crie uma nova conexão no Dbeaver para se conectar com o banco que acabou de criar no aiven. Para isso siga os mesmos passos que sigamos em nossa ultima aula, só alterando o nome do banco de "defaultdb" para "dinamica1".
+- Conecte no banco pelo Dbeaver e aba uma nova janela de Script SQL com esse banco
+- Gere o modelo físico pelo BRModelo , copie para a janela de scripts do Dbeaver e execute (como fizemos na última aula).
+- Verifique se as tabelas foram geradas corretamente.
+
+### Questões para análise
+
+- Leia os comandos SQL executados. É possível inferir o que todos eles fazem? Algum detalhe chama atenção ou é mais difícil de entender?
+
+- Abra as tabelas no modo de "dados" do DBeaver e insira registros. Tente inserir um animal informando um id_cliente inexistente. Foi possível?
+
+- Insira agora 2 registros de clientes e 2 de animais (um relacionado a cada cliente). Em seguida tente excluir os dados de um dos clientes? O que aconteceu? O banco aceitou? Se sim, o que aconteceu com o registro do animal associado ao cliente excluído? Por que?

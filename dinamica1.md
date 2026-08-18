@@ -1,4 +1,4 @@
-# Aula 1 - Criando nosso primeiro Banco
+# Dinâmica 1 - Criando nosso primeiro Banco
 
 Nesta aula vamos criar nosso primeiro banco de dados. Vamos começar criando um modelo conceitual a partir de uma descrição de domínio. Depois vamos criar nosso modelo lógico a partir do conceitual. Por fim vamos implementar nosso banco e navegar pelos dados.
 
@@ -102,3 +102,19 @@ Essa mudança teria impacto muito maior do que usar uma chave artificial, porque
 ### Prática de Modelo Lógico
 
 Para praticar os conceitos de modelo lógico vistos nesta aula, siga as instruções de [AtividadeModeloLogico1.md](AtividadeModeloLogico1.md).
+
+## Modelo Físico
+
+No nível físico, começamos a pensar no banco como um sistema concreto, em termos de um script SQL e de um esquema implementado em um SGBD. O objetivo desta fase é transformar o modelo lógico em instruções concretas para o SGBD, de forma que o banco possa ser criado e utilizado de fato.
+
+- O modelo físico será representado em forma de script SQL.
+- Nesta etapa, vamos trabalhar com a parte de DDL do SQL.
+- DDL significa Data Definition Language, ou linguagem de definição de dados.
+- A DDL é usada para criar os objetos do banco, como tabelas, colunas, tipos e restrições.
+- Em geral, o modelo físico é gerado a partir do modelo lógico.
+- Nesta aula vamos gerar o script SQL usando o BRModelo e executá-lo em um banco PostgreSQL hospedado no Aiven, acessado pelo DBeaver.
+
+### Prática de Modelo Físico
+
+Para praticar os conceitos de modelo físico vistos nesta aula, siga as instruções de [atividadeModeloFisico1.md](atividadeModeloFisico1.md).
+

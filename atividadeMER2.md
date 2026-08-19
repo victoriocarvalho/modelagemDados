@@ -74,4 +74,5 @@ Desenvolva uma **segunda versão do seu modelo MER** que inclua o atributo "desc
 
 Comparar as duas versões do modelo é uma excelente forma de compreender como relacionamentos N:N podem ter atributos próprios!
 
+
 ---

@@ -1,25 +1,20 @@
-# Dinâmica 1 - Criando nosso primeiro Banco
+# Aula 1 - Criando nosso primeiro Banco
 
-Nesta aula vamos criar nosso primeiro banco de dados. Vamos começar criando um modelo conceitual a partir de uma descrição de domínio. Depois vamos criar nosso modelo lógico a partir do conceitual. Por fim vamos implementar nosso banco e navegar pelos dados.
+Nesta aula vamos criar nosso primeiro banco de dados. Vamos começar criando um modelo conceitual a partir de uma descrição de domínio. Depois vamos criar nosso modelo lógico a partir do conceitual. Por fim vamos implementar nosso banco e navegar pelas tabelas.
 
 ## Modelo Conceitual
 
-Neste nível, trabalhamos com o Modelo Entidade-Relacionamento (MER).
+Modelagem conceitual é a etapa de representação dos conceitos relevantes de um domínio e das relações entre eles. Seu foco está em compreender e organizar o significado dos dados, sem depender dos detalhes de implementação de um banco de dados específico, como tabelas, tipos de dados, índices ou comandos SQL.
 
-- Entidades: representam os objetos ou conceitos do domínio, como cliente e animal de estimação.
-- Atributos: são as características das entidades. Neste momento, trabalhamos apenas com atributos simples e monovalorados.
-- Atributos identificadores: são atributos que identificam uma instância de uma entidade. Não pode haver duas instâncias da entidade com mesmo valor para este atributo
-- Relacionamentos: representam a associação entre entidades.
-- Ordem de leitura de um relacionamento: é importante observar a ordem correta da leitura do relacionamento no diagrama.
-- Cardinalidades: cada extremidade do relacionamento tem cardinalidade mínima e máxima.
-- A cardinalidade mínima é, tipicamente, 0 ou 1.
-- A cardinalidade máxima é, tipicamente, 1 ou n.
-- A cardinalidade máxima define o tipo do relacionamento:
-  - 1:1
-  - 1:N
-  - N:N
+A comunidade de banco de dados tradicionalmente utiliza o Modelo Entidade-Relacionamento (MER) para realizar a modelagem conceitual. Os conceitos centrais do MER são entidades, atributos e relacionamentos.
 
-Para ilustrar os conceitos, consideremos o relacionamento entre cliente e animal de estimação. A representação abaixo segue a ideia conceitual da notação do BRModelo, com entidades, atributos e cardinalidades:
+- **Entidades:** mapeiam categorias ou tipos de objetos que existem no domínio. Podem representar objetos físicos, como livros, carros e computadores; seres, como pessoas e animais; instituições, como escolas, empresas e hospitais; papéis exercidos em um contexto, como cliente, veterinário, aluno e professor; eventos, como aulas, consultas e vendas; conceitos abstratos, como obra literária, filme, contrato e folha de pagamento; dentre outros conceitos.
+- **Atributos:** são as características ou propriedades das entidades. Uma entidade `Cliente` pode ter os atributos `nome`, `telefone`, `data de nascimento` e `endereço`; uma entidade `Livro` pode ter `título`, `ano de publicação` e `ISBN`; e uma entidade `Consulta` pode ter `data`, `horário` e `observação`.
+- **Atributos identificadores:** são atributos que identificam uma instância de uma entidade. Não pode haver duas instâncias de uma entidade com o mesmo valor para esse atributo. No exemplo, `cpf` identifica cada cliente e `id_animal` identifica cada animal.
+- **Relacionamentos:** representam as associações ou vínculos entre entidades. Exemplos são `Cliente possui Animal`, `Aluno frequenta Turma`, `Professor ministra Aula`, `Médico realiza Consulta` e `Carro pertence a Pessoa`.
+- **Cardinalidades:** cada extremidade do relacionamento tem uma cardinalidade mínima e uma cardinalidade máxima. A cardinalidade mínima é, tipicamente, 0 ou 1, indicando se a participação é opcional ou obrigatória. A cardinalidade máxima é, tipicamente, 1 ou N, indicando quantas instâncias podem participar do relacionamento (N indica que não há limite máximo). Os relacionamentos podem ser categorizados considerando as cardinalidades máximas, como: "1 para 1", "1 para N" ou "N para N".
+
+Para ilustrar os conceitos, considere um domínio de clínica veterinária em que é necessário manter um arquivo dos clientes e de seus animais. O diagrama abaixo captura parte deste domínio, seguindo a notação do BRModelo, com entidades, atributos e cardinalidades:
 
 ```mermaid
 flowchart LR
@@ -44,7 +39,7 @@ flowchart LR
     R ---|0,N| C2
 ```
 
-Nesse exemplo, um cliente pode possuir zero ou muitos animais, e cada animal pertence a um único cliente. A cardinalidade máxima define o tipo de relacionamento: 1:N.
+É importante observar a ordem de leitura de um relacionamento no diagrama. Neste exemplo, lemos que um `Cliente` possui zero ou muitos `Animais`, enquanto cada `Animal` pertence a exatamente um `Cliente`. A leitura deve sempre considerar a entidade de origem, o relacionamento e a entidade de destino, respeitando as cardinalidades indicadas em cada extremidade. Note que o relacionamento deste exemplo é classificado como um relacionamento "1 para N"
 
 ### Prática de Modelo Conceitual
 
@@ -58,7 +53,7 @@ No nível lógico, usamos o modelo relacional, em que tudo é representado como 
 - Atributos dão origem a colunas das tabelas.
 - Atributos identificadores dão origem às chaves primárias.
 - Relacionamentos também devem ser mapeados.
-- Nesta aula, trabalharemos com relacionamentos 1:N.
+- Nesta aula, trabalharemos apenas com relacionamentos 1:N.
 - Em um relacionamento 1:N, a chave primária da tabela do lado 1 é exportada para a tabela do lado N, originando a chave estrangeira.
 - A chave estrangeira identifica, em uma tabela, uma linha de outra tabela relacionada.
 - Além disso, criamos a restrição de integridade referencial para evitar inconsistência entre chaves primárias e estrangeiras.
@@ -105,14 +100,15 @@ Para praticar os conceitos de modelo lógico vistos nesta aula, siga as instruç
 
 ## Modelo Físico
 
-No nível físico, começamos a pensar no banco como um sistema concreto, em termos de um script SQL e de um esquema implementado em um SGBD. O objetivo desta fase é transformar o modelo lógico em instruções concretas para o SGBD, de forma que o banco possa ser criado e utilizado de fato.
+No nível físico, começamos a pensar no banco como um sistema concreto, em termos de um script SQL e de um esquema implementado em um SGBD. O objetivo desta fase é transformar o modelo lógico em instruções concretas para o SGBD, de forma que o banco possa ser criado e utilizado de fato. 
 
-- O modelo físico será representado em forma de script SQL.
-- Nesta etapa, vamos trabalhar com a parte de DDL do SQL.
-- DDL significa Data Definition Language, ou linguagem de definição de dados.
-- A DDL é usada para criar os objetos do banco, como tabelas, colunas, tipos e restrições.
-- Em geral, o modelo físico é gerado a partir do modelo lógico.
-- Nesta aula vamos gerar o script SQL usando o BRModelo e executá-lo em um banco PostgreSQL hospedado no Aiven, acessado pelo DBeaver.
+O modelo físico será representado em forma de script SQL, mais especificamente o SQL-DDL. DDL significa Data Definition Language, ou linguagem de definição de dados. O SQL-DDL é usado para criar os objetos do banco, como tabelas, colunas, tipos e restrições.
+
+Para criar nosso banco precisamos de um Sistema Gerenciador de Banco de Dados (SGBD). Um SGBD é o software responsável por criar, armazenar, organizar, consultar e controlar o acesso aos dados de um banco de dados. Ele também oferece recursos para definir tabelas e restrições, executar comandos SQL, controlar transações, garantir a integridade dos dados e gerenciar o acesso de diferentes usuários e aplicações. Existem diversos SGBDs, cada um com características e recursos próprios. São exemplos o PostgreSQL, o MySQL, o MariaDB, o Oracle Database, o Microsoft SQL Server e o SQLite. Nesta disciplina, adotaremos o PostgreSQL, um SGBD relacional de código aberto, bastante utilizado em aplicações e compatível com os conceitos de modelo relacional e SQL trabalhados nesta aula.
+
+Para que o nosso banco de dados possa ser acessado sem depender de uma instalação local, utilizaremos um servidor na nuvem para hospedá-lo. O serviço adotado será o [Aiven](https://aiven.io/), que disponibiliza uma instância do PostgreSQL para execução e acesso remoto. Assim, o SGBD fica em execução no ambiente de nuvem, enquanto nós acessamos o banco pela internet usando uma ferramenta gerenciadora.
+
+O serviço de banco de dados permanece rodando em segundo plano, ou *background*, aguardando conexões e comandos de usuários e aplicações. Para criar, consultar e administrar o banco, utilizamos ferramentas gerenciadoras, que permitem estabelecer uma conexão com o SGBD e executar operações de forma mais prática. O pgAdmin e o DBeaver são exemplos dessas ferramentas. Nesta disciplina, utilizaremos o DBeaver para nos conectar ao PostgreSQL hospedado no Aiven, executar scripts SQL e consultar as tabelas criadas.
 
 ### Prática de Modelo Físico
 

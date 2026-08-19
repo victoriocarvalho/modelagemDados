@@ -14,7 +14,7 @@ A clínica precisa manter um cadastro de **clientes**. De cada cliente deseja-se
 
 Os clientes levam seus **animais de estimação** para consultas. De cada animal deseja-se armazenar um número de registro (que o identifica unicamente), nome, tipo de animal (cão, gato, pássaro, etc.), raça e data de nascimento. Cada animal pertence a um único cliente.
 
-Quando um cliente leva seu animal à clínica, é feito um **atendimento/consulta**. Sobre cada consulta deseja-se armazenar o número da consulta (que a identifica unicamente), a data e hora, o diagnóstico fornecido, o valor cobrado e o veterinário responsável. Cada consulta envolve um único veterinário e um único animal.
+Quando um cliente leva seu animal à clínica, é feita uma **consulta**. Sobre cada consulta deseja-se armazenar o número da consulta (que a identifica unicamente), a data e hora, o diagnóstico fornecido, o valor cobrado e o veterinário responsável. Cada consulta envolve um único veterinário e um único animal.
 
 ---
 

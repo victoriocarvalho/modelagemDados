@@ -14,7 +14,7 @@ Nesta atividade, você deve criar o modelo lógico a partir do modelo conceitual
 
 ### Instruções
 
-Crie um modelo lógico no BRModelo a partir do modelo conceitual da atividadeMER1.md, mas sem usar a funcionalidade de geração automática do BRModelo.
+Crie um modelo lógico no BRModelo a partir do modelo conceitual da [atividadeMER1.md](../AtividadesModeloConceitual/atividadeMER1.md), mas sem usar a funcionalidade de geração automática do BRModelo.
 
 Faça o processo manualmente, seguindo este passo a passo:
 
@@ -52,7 +52,7 @@ Agora crie um novo modelo lógico no BRModelo usando a função de geração aut
 
 ### Instruções
 
-1. Use o mesmo modelo conceitual da atividadeMER1.md.
+1. Use o mesmo modelo conceitual da [atividadeMER1.md](../AtividadesModeloConceitual/atividadeMER1.md).
 2. Gere o modelo lógico automaticamente no BRModelo.
 3. Compare este modelo com o modelo lógico que você criou manualmente.
 
@@ -88,4 +88,4 @@ Refletindo sobre a definição de chave primária, responda:
 
 **Bom trabalho!**
 
-[Voltar para o Arquivo Principal da Dinâmica 1](dinamica1.md)
+[Voltar para o Arquivo Principal da Dinâmica 1](../dinamica1.md)

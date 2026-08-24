@@ -6,7 +6,7 @@ Bem-vindo ao conjunto de atividades sobre Modelo Entidade-Relacionamento (MER)! 
 
 ---
 
-## [Atividade 1: Clínica Veterinária](atividadeMER1.md)
+## [Atividade 1: Clínica Veterinária](AtividadesModeloConceitual/atividadeMER1.md)
 
 **Conceitos abordados:**
 - Identificação de entidades
@@ -20,7 +20,7 @@ Nesta atividade você desenvolverá um modelo para uma clínica veterinária. O 
 
 ---
 
-## [Atividade 2: Escola de Línguas](atividadeMER2.md)
+## [Atividade 2: Escola de Línguas](AtividadesModeloConceitual/atividadeMER2.md)
 
 **Conceitos abordados:**
 - Relacionamentos **N para N** (muitos-para-muitos)
@@ -33,7 +33,7 @@ Nesta atividade você modelará um sistema para uma escola de idiomas. O foco pr
 
 ---
 
-## [Atividade 3: Empresa de Projetos](atividadeMER3.md)
+## [Atividade 3: Empresa de Projetos](AtividadesModeloConceitual/atividadeMER3.md)
 
 **Conceitos abordados:**
 - Múltiplos relacionamentos entre as mesmas duas entidades

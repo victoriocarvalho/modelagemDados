@@ -12,7 +12,7 @@ Uma escola de idiomas deseja implementar um sistema para gerenciar seus cursos, 
 
 A escola mantém um cadastro de seus **professores**. De cada professor deseja-se registrar seu número de matrícula (que o identifica unicamente), nome completo e nacionalidade.
 
-A escola oferece vários **cursos** de idiomas. De cada curso deseja-se armazenar um código do curso (que o identifica unicamente), nome do idioma e nível (básico, intermediário, avançado).
+A escola oferece vários **cursos** de idiomas. De cada curso deseja-se armazenar um código do curso (que o identifica unicamente), nome do idioma, nível (básico, intermediário, avançado).
 
 Um **professor pode estar habilitado a lecionar vários cursos** e um **curso pode ter vários professores habilitados**. 
 
@@ -76,3 +76,5 @@ Comparar as duas versões do modelo é uma excelente forma de compreender como r
 
 
 ---
+
+[Voltar para o Arquivo Principal da Dinâmica 2](../dinamica2.md)

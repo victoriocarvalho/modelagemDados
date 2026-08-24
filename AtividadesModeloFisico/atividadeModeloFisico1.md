@@ -68,4 +68,4 @@ O modelo físico é a etapa em que o banco deixa de ser apenas um desenho concei
 
 **Bom trabalho!**
 
-[Voltar para o Arquivo Principal da Dinâmica 1](dinamica1.md)
+[Voltar para o Arquivo Principal da Dinâmica 1](../dinamica1.md)

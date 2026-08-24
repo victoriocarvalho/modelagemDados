@@ -43,7 +43,7 @@ flowchart LR
 
 ### Prática de Modelo Conceitual
 
-Para praticar os conceitos vistos até aqui, vamos utilizar a ferramenta BRModelo Offline para criar um modelo conceitual. Para isso faça download da ferramenta e faça as atividades descritas em [atividadeMER1.md](atividadeMER1.md).
+Para praticar os conceitos vistos até aqui, vamos utilizar a ferramenta BRModelo Offline para criar um modelo conceitual. Para isso faça download da ferramenta e faça as atividades descritas em [atividadeMER1.md](AtividadesModeloConceitual/atividadeMER1.md).
 
 ## Modelo Lógico
 
@@ -96,7 +96,7 @@ Essa mudança teria impacto muito maior do que usar uma chave artificial, porque
 
 ### Prática de Modelo Lógico
 
-Para praticar os conceitos de modelo lógico vistos nesta aula, siga as instruções de [AtividadeModeloLogico1.md](AtividadeModeloLogico1.md).
+Para praticar os conceitos de modelo lógico vistos nesta aula, siga as instruções de [AtividadeModeloLogico1.md](AtividadesModeloLogico/AtividadeModeloLogico1.md).
 
 ## Modelo Físico
 
@@ -112,5 +112,5 @@ O serviço de banco de dados permanece rodando em segundo plano, ou *background*
 
 ### Prática de Modelo Físico
 
-Para praticar os conceitos de modelo físico vistos nesta aula, siga as instruções de [atividadeModeloFisico1.md](atividadeModeloFisico1.md).
+Para praticar os conceitos de modelo físico vistos nesta aula, siga as instruções de [atividadeModeloFisico1.md](AtividadesModeloFisico/atividadeModeloFisico1.md).
 

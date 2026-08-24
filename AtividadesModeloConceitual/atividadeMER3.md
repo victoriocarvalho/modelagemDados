@@ -24,7 +24,7 @@ Um **funcionário pode participar de um projeto de duas formas distintas**:
 
 ---
 
-## Tarefa
+## Tarefa 1
 
 Desenvolva um **Modelo Entidade Relacionamento (MER)** para o cenário descrito acima utilizando a ferramenta **BRModelo**.
 
@@ -101,8 +101,10 @@ Analise o seu modelo original (primeira versão) e responda aos seguintes questi
    - Um projeto **sempre** precisa ter um coordenador? (cardinalidade mínima 1)
    - Um funcionário **precisa** coordenar pelo menos um projeto? (cardinalidade mínima 0)
 
-5. **Evolução do Modelo**: Como seu modelo evoluiu entre a primeira e terceira versão? Quais foram as principais mudanças nas entidades e relacionamentos?
+5. **Evolução do Modelo**: Como seu modelo evoluiu entre a primeira e a segunda versão? Quais foram as principais mudanças nas entidades e relacionamentos?
 
 ---
 
 **Data de Entrega:** Conforme indicado no cronograma da disciplina
+
+[Voltar para o Arquivo Principal da Dinâmica 3](../dinamica3.md)

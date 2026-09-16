@@ -1,72 +1,58 @@
-# Atividades de Modelagem Conceitual de Dados
+# Índice das Dinâmicas
 
-## Índice de Atividades MER
+## [Dinâmica 1 - Primeiro banco de dados](dinamica1.md)
 
-Bem-vindo ao conjunto de atividades sobre Modelo Entidade-Relacionamento (MER)! Abaixo estão todas as atividades organizadas em ordem de complexidade incremental.
+### Principais Conceitos Abordados
+#### Modelo conceitual
 
----
+- Entidades, atributos e atributos identificadores.
+- Relacionamentos 1:N e cardinalidades.
 
-## [Atividade 1: Clínica Veterinária](AtividadesModeloConceitual/atividadeMER1.md)
+#### Modelo lógico
 
-**Conceitos abordados:**
-- Identificação de entidades
-- Definição de atributos simples e monovalorados
-- Atributos identificadores (chaves primárias)
-- Relacionamentos **1 para N** (um-para-muitos)
-- Análise de cardinalidades
+- Tabelas, colunas, chaves primárias e chaves estrangeiras.
+- Transposição de chave no relacionamento 1:N.
+- Integridade referencial.
 
-**Descrição:**
-Nesta atividade você desenvolverá um modelo para uma clínica veterinária. O cenário apresenta entidades com relacionamentos simples, onde todos os relacionamentos são do tipo 1:N. A atividade inclui uma seção "Para Refletir" que o induz a pensar sobre cardinalidades máximas e a possibilidade de relacionamentos N:N.
+#### Modelo físico
 
----
+- SGBD, PostgreSQL, Aiven e DBeaver.
+- SQL-DDL, tabelas, tipos e restrições.
 
-## [Atividade 2: Escola de Línguas](AtividadesModeloConceitual/atividadeMER2.md)
+## [Dinâmica 2 - Relacionamentos N:N](dinamica2.md)
 
-**Conceitos abordados:**
-- Relacionamentos **N para N** (muitos-para-muitos)
-- Atributos em relacionamentos N:N
-- Restrições de integridade
-- Limitações do modelo MER
+### Principais Conceitos Abordados
+#### Modelo conceitual
 
-**Descrição:**
-Nesta atividade você modelará um sistema para uma escola de idiomas. O foco principal é compreender relacionamentos N:N e como nem todas as regras de negócio podem ser capturadas diretamente no diagrama. A atividade também inclui uma segunda tarefa sobre como representar atributos nos relacionamentos N:N, consolidando o aprendizado sobre a importância de caracterizar relacionamentos adequadamente.
+- Relacionamentos N:N e seus atributos.
 
----
+#### Modelo lógico
 
-## [Atividade 3: Empresa de Projetos](AtividadesModeloConceitual/atividadeMER3.md)
+- Tabela associativa.
+- Transformação de N:N em dois relacionamentos 1:N.
+- Chaves estrangeiras e chave primária composta.
 
-**Conceitos abordados:**
-- Múltiplos relacionamentos entre as mesmas duas entidades
-- Relacionamentos com papéis distintos (coordenador vs. colaborador)
-- Cardinalidades diferentes entre relacionamentos
-- Atributos em relacionamentos
-- Modelagem de cenários mais complexos
+#### Modelo físico
 
-**Descrição:**
-Nesta atividade você modelará um sistema de gerenciamento de projetos onde uma mesma empresa possui funcionários e projetos. A complexidade aqui é a existência de **dois relacionamentos distintos entre as mesmas entidades**: um funcionário pode ser coordenador de um projeto (relação 1:N) ou colaborador em um projeto (relação N:N com atributo de função). Este cenário consolidar o aprendizado sobre como representar múltiplos papéis que uma entidade pode ter em relação a outra.
+- Script SQL-DDL do relacionamento N:N.
+- Restrições de integridade referencial.
 
----
+## [Dinâmica 3 - Múltiplos relacionamentos entre duas entidades e dados históricos](dinamica3.md)
 
-## Orientações Gerais
+### Principais Conceitos Abordados
+#### Modelo conceitual
 
-### Ferramenta a Utilizar
-Utilize a ferramenta **BRModelo** para criar todos os seus diagramas.
+- Mais de um relacionamento entre as mesmas entidades.
+- Papéis, relacionamentos 1:1 e dados históricos.
+- Necessidade de dados históricos.
 
-### Formato de Entrega
-Para cada atividade, você deve:
-1. Fazer uma cópia do arquivo de descrição
-2. Incluir a imagem do seu modelo MER no arquivo
-3. Gerar um PDF contendo o diagrama
-4. Postar no AVA conforme cronograma
+#### Modelo lógico
 
-### Dicas para Sucesso
-- Leia o cenário com atenção
-- Identifique todas as entidades mencionadas
-- Determine os atributos de cada entidade
-- Indique claramente as chaves primárias
-- Represente os relacionamentos com as cardinalidades corretas
-- Responda às questões de reflexão para consolidar o aprendizado
+- Mapeamento individual de relacionamentos.
+- Chaves estrangeiras orientadas a papéis.
+- Escolha do lado que recebe a chave no relacionamento 1:1.
 
----
+#### Modelo físico
 
-**Bom trabalho!** 📚
+- Script SQL para relacionamentos múltiplos.
+- Tabelas associativas, chaves estrangeiras e histórico.

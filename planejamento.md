@@ -93,16 +93,15 @@ Foco Lógico - Como transformar atributos compostos e multivalorados do lógico 
 
 
 ## Aula 5 
-Foco Conceitual - Autorelacionamento e papeis (vamos colocar no modelo da aula 3 anterior uma autorelação "supervisor" 1 para n na classe funcionário). Ressaltar a importância dos papéis nesses casos.
+Foco Conceitual - Autorrelacionamento e papeis (vamos colocar no modelo da aula 3 anterior uma autorrelação "supervisor" 1 para n na classe funcionário). Ressaltar a importância dos papéis nesses casos.
 Foco Lógico - Mostrar como a transformação se dá como se fossem duas tabelas Funcionario...
 
 
 ## Aula 6 (não teria no técnico)
 Foco Conceitual - Herança
 Foco Lógico - Como mapear herança
-
 Fazer aqui um modelo grande...
-
+(Colocar no modelo da dinâmica 4 heranças - vendedor e cliente são pessoas. Note que a mesma pessoa pode exercer o papel de cliente e de vendedor.)
 ## Aula 7 (Reflexões mais profundas)
 Foco Conceitual - Entidade vs. atributos (usar o domínio da aula 1 - separamos cliente de animal ao inves de colocar os dados no cliente no animal (mesmo cada animal sendo de 1 cliente) mas colocamos tipo de animal e raça em animal, mesmo a raça dependendo unicamente do tipo e havendo repetições...)
 

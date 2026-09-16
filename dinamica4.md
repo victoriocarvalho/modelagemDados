@@ -94,6 +94,10 @@ flowchart LR
 
 Nesse segundo modelo, cada `Filme` possui exatamente um `Diretor`, enquanto um `Diretor` pode estar associado a nenhum ou a vários `Filmes`. A diferença entre os dois modelos não está apenas na quantidade de atributos de menor granularidade: ela está no papel que o conceito desempenha no domínio. O endereço depende do cliente e é uma característica dele; o diretor existe independentemente do filme e participa de várias possíveis análises e associações. Não seria adequado, no segundo domínio, modelar diretor como um atributo composto de Filme.
 
+### Prática de Modelo Conceitual
+
+Para praticar os conceitos de atributos compostos e multivalorados, utilize o BRModelo Offline e desenvolva o modelo conceitual descrito em [atividadeMER4.md](AtividadesModeloConceitual/atividadeMER4.md).
+
 ## Modelo Lógico
 
 No modelo lógico, representamos os dados como tabelas, colunas, chaves primárias e chaves estrangeiras. A transformação de atributos compostos e multivalorados segue regras diferentes:

@@ -176,7 +176,7 @@ O relacionamento `contém` possui os atributos `quantidade` e `preco_vendido`, p
 
 Os atributos compostos são decompostos em suas partes e essas partes tornam-se colunas nas tabelas de `Cliente` e `Vendedor`. Não é criada uma coluna única chamada `endereco`.
 
-Cada atributo multivalorado `telefones` é representado por uma tabela própria. Foram escolhidas duas tabelas, `cliente_telefone` e `vendedor_telefone`, para manter explícita a entidade proprietária e evitar uma associação polimórfica ambígua.
+Os atributos multivalorados `telefones` são representado por uma tabela própria `Telefone`, associada a `Cliente` e a `Vendedor`.
 
 Todas as tabelas possuem chaves primárias artificiais. Os identificadores de domínio recebem `UNIQUE`:
 
@@ -190,8 +190,8 @@ As tabelas de telefone possuem uma restrição adicional `UNIQUE` no par formado
 
 ```mermaid
 erDiagram
-    CLIENTE ||--o{ CLIENTE_TELEFONE : possui
-    VENDEDOR ||--o{ VENDEDOR_TELEFONE : possui
+    CLIENTE |o--o{TELEFONE : possui
+    VENDEDOR |o--o{TELEFONE : possui
     CATEGORIA ||--o{ PRODUTO : classifica
     CLIENTE ||--o{ VENDA : compra
     VENDEDOR ||--o{ VENDA : responsavel
@@ -213,12 +213,6 @@ erDiagram
         date data_cadastro
     }
 
-    CLIENTE_TELEFONE {
-        int id_cliente_telefone PK
-        varchar telefone
-        int id_cliente FK
-    }
-
     VENDEDOR {
         int id_vendedor PK
         int matricula UK
@@ -236,10 +230,11 @@ erDiagram
         decimal percentual_comissao
     }
 
-    VENDEDOR_TELEFONE {
+    TELEFONE {
         int id_vendedor_telefone PK
         varchar telefone
         int id_vendedor FK
+        int id_cliente FK
     }
 
     CATEGORIA {
@@ -359,22 +354,10 @@ CREATE TABLE venda (
         ON UPDATE CASCADE
 );
 
-CREATE TABLE cliente_telefone (
-    id_cliente_telefone SERIAL PRIMARY KEY,
-    id_cliente INTEGER NOT NULL,
-    telefone VARCHAR(20) NOT NULL,
-    CONSTRAINT uq_cliente_telefone
-        UNIQUE (id_cliente, telefone),
-    CONSTRAINT fk_cliente_telefone_cliente
-        FOREIGN KEY (id_cliente)
-        REFERENCES cliente (id_cliente)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
-
-CREATE TABLE vendedor_telefone (
+CREATE TABLE telefone (
     id_vendedor_telefone SERIAL PRIMARY KEY,
-    id_vendedor INTEGER NOT NULL,
+    id_vendedor INTEGER,
+    id_cliente INTEGER,
     telefone VARCHAR(20) NOT NULL,
     CONSTRAINT uq_vendedor_telefone
         UNIQUE (id_vendedor, telefone),
@@ -382,7 +365,13 @@ CREATE TABLE vendedor_telefone (
         FOREIGN KEY (id_vendedor)
         REFERENCES vendedor (id_vendedor)
         ON DELETE CASCADE
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_cliente_telefone_cliente
+        FOREIGN KEY (id_cliente)
+        REFERENCES cliente (id_cliente)
+        ON DELETE CASCADE
         ON UPDATE CASCADE
+
 );
 
 CREATE TABLE item_venda (

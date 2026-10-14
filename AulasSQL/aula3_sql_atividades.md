@@ -1,4 +1,4 @@
-# Atividade — SQL-DML 3
+# Atividade — SQL-DML: consultando dados com INNER JOIN
 
 **Atividade individual**
 

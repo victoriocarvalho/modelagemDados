@@ -1,5 +1,4 @@
-# Atividade — SQL-DML 1
-
+# Atividade — SQL-DML: inserindo, consultando, alterando e removendo dados
 **Atividade individual**
 
 ## Objetivo

@@ -1,4 +1,4 @@
-# Atividade — SQL-DML 2
+# Atividade — SQL-DML: filtrando dados com WHERE
 
 **Atividade individual**
 

@@ -1,4 +1,4 @@
-# Aula 3 — SQL-DML: consultando dados com INNER JOIN
+# Aula 3 — Consultando dados com INNER JOIN
 
 Nas aulas anteriores, aprendemos a consultar e alterar dados de uma tabela usando `SELECT`, `WHERE`, `UPDATE` e `DELETE`. Agora vamos tratar de uma situação muito comum: a informação de que precisamos está distribuída em tabelas diferentes.
 

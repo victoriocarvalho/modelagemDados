@@ -1,220 +1,116 @@
-# Aula 3 — Consultando dados com INNER JOIN
+# Aula 3 — Ordenação e paginação de resultados
 
-Nas aulas anteriores, aprendemos a consultar e alterar dados de uma tabela usando `SELECT`, `WHERE`, `UPDATE` e `DELETE`. Agora vamos tratar de uma situação muito comum: a informação de que precisamos está distribuída em tabelas diferentes.
+É muito comum que uma consulta retorne muitas linhas. Em vez de apresentar todos os resultados de uma só vez, podemos ordená-los e dividi-los em partes menores, chamadas páginas. Isso facilita a leitura e é especialmente útil em aplicações e sites.
 
-Imagine que desejamos produzir uma listagem com o nome de cada funcionário e o nome do departamento ao qual ele pertence. O nome do funcionário está na tabela `funcionario`, enquanto o nome do departamento está na tabela `departamento`. Para produzir essa listagem, precisamos combinar os registros relacionados das duas tabelas.
+Nesta aula, vamos estudar três recursos que permitem ordenar e paginar resultados: `ORDER BY`, `LIMIT` e `OFFSET`.
 
-O objetivo principal desta aula é compreender o conceito de junção e utilizar `INNER JOIN` para consultar dados relacionados. No final, veremos também como uma junção pode ser usada em comandos `UPDATE` e `DELETE`.
+## Ordenando resultados com ORDER BY
 
-Nesta aula estudaremos:
+Por padrão, o banco de dados não garante uma ordem específica para as linhas retornadas por uma consulta. Para definir a ordem dos resultados, usamos `ORDER BY`.
 
-- a necessidade de combinar informações de tabelas diferentes;
-- o conceito de produto cartesiano;
-- a relação entre chave primária e chave estrangeira em uma junção;
-- a sintaxe do `INNER JOIN`;
-- junções envolvendo mais de duas tabelas;
-- o uso de junções em `UPDATE` e `DELETE`.
-
-## Modelo usado nos exemplos
-
-Continuaremos usando basicamente o mesmo modelo simples de departamentos e funcionários das aulas anteriores. A tabela `funcionario` possui uma chave estrangeira que indica o departamento de cada funcionário. Ela também possui a coluna `data_contratacao`, acrescentada na aula 2.
-
-```mermaid
-erDiagram
-    DEPARTAMENTO ||--o{ FUNCIONARIO : possui
-
-    DEPARTAMENTO {
-        int id_departamento PK
-        varchar nome
-        numeric orcamento
-    }
-
-    FUNCIONARIO {
-        int id_funcionario PK
-        varchar nome
-        varchar cargo
-        numeric salario
-        date data_contratacao
-        int id_departamento FK
-    }
-```
-
-Utilize o banco de dados preparado nas aulas anteriores. Caso ainda não tenha criado as tabelas, consulte o script de criação da aula 1 e execute também o `ALTER TABLE` apresentado na aula 2 para acrescentar `data_contratacao`.
-
-Os exemplos consideram que existem departamentos e funcionários cadastrados e que cada funcionário possui um valor de `id_departamento` correspondente a um departamento existente.
-
-## A necessidade de combinar tabelas
-
-Uma consulta simples à tabela `funcionario` permite obter os funcionários, mas não permite exibir o nome do departamento, pois essa informação está em outra tabela:
+O exemplo abaixo lista os funcionários em ordem alfabética pelo nome:
 
 ```sql
-SELECT nome, cargo, salario, id_departamento
-FROM funcionario;
+SELECT nome, cargo, salario
+FROM funcionario
+ORDER BY nome ASC;
 ```
 
-O campo `id_departamento` identifica o departamento, mas não é tão informativo quanto seu nome. Para obter os nomes dos funcionários e de seus respectivos departamentos, precisamos relacionar as tabelas `funcionario` e `departamento` por meio dos campos que representam essa relação.
+`ASC` indica ordem crescente. Para textos, isso corresponde à ordem alfabética; para números e datas, corresponde do menor para o maior e do mais antigo para o mais recente, respectivamente. Como `ASC` é o padrão, também poderíamos escrever apenas `ORDER BY nome`.
 
-## Produto cartesiano
-
-Antes de apresentar o `INNER JOIN`, vamos observar o que acontece quando colocamos duas tabelas na cláusula `FROM` sem informar como seus registros devem ser relacionados.
+Para inverter a ordem, usamos `DESC`. Por exemplo, para listar os funcionários do maior para o menor salário:
 
 ```sql
-SELECT d.id_departamento,
-       d.nome AS nome_departamento,
-       f.id_funcionario,
-       f.nome AS nome_funcionario,
-       f.id_departamento
-FROM departamento AS d,
-     funcionario AS f;
+SELECT nome, cargo, salario
+FROM funcionario
+ORDER BY salario DESC;
 ```
 
-Nesse caso, o banco produz um produto cartesiano: cada linha de `departamento` é combinada com cada linha de `funcionario`. Se existirem 2 departamentos e 4 funcionários, o resultado terá 8 combinações.
+### Ordenando por mais de um critério
 
-Entre essas combinações aparecerão, por exemplo, um funcionário do departamento 1 associado ao nome do departamento 2 e um funcionário do departamento 2 associado ao nome do departamento 1. Essas combinações não representam a realidade do nosso banco e, portanto, o resultado não faz sentido para a listagem desejada.
-
-Para que a consulta faça sentido, precisamos combinar a chave primária de `departamento` com a chave estrangeira correspondente em `funcionario`:
-
-```text
-departamento.id_departamento = funcionario.id_departamento
-```
-
-Essa é a condição que identifica quais linhas das duas tabelas representam uma relação verdadeira.
-
-## Usando INNER JOIN
-
-O `INNER JOIN` permite declarar explicitamente a relação entre as tabelas. Sua sintaxe básica é:
+Podemos informar vários critérios separados por vírgulas. O banco aplica o primeiro critério e usa o seguinte para ordenar as linhas que empataram no anterior.
 
 ```sql
-SELECT colunas
-FROM tabela_principal AS a
-INNER JOIN tabela_relacionada AS b
-    ON a.chave = b.chave_estrangeira;
+SELECT nome, id_departamento, salario
+FROM funcionario
+ORDER BY id_departamento ASC,
+         salario DESC,
+         nome ASC;
 ```
 
-A condição da junção é escrita depois de `ON`. No nosso modelo, podemos relacionar a chave primária de `departamento` com a chave estrangeira de `funcionario`:
+Primeiro, os funcionários são organizados pelo identificador do departamento em ordem crescente. Dentro de cada departamento, são ordenados pelo salário do maior para o menor. Se dois funcionários do mesmo departamento tiverem o mesmo salário, seus nomes são usados como critério de desempate, em ordem alfabética.
+
+## Limitando a quantidade de resultados com LIMIT
+
+`LIMIT` restringe o número máximo de linhas retornadas. Ele pode ser usado sem `ORDER BY`:
 
 ```sql
-SELECT f.id_funcionario,
-       f.nome AS nome_funcionario,
-       d.id_departamento,
-       d.nome AS nome_departamento
-FROM funcionario AS f
-INNER JOIN departamento AS d
-    ON d.id_departamento = f.id_departamento;
+SELECT nome, cargo, salario
+FROM funcionario
+LIMIT 5;
 ```
 
-Agora cada funcionário aparece associado ao nome do departamento indicado em seu `id_departamento`. Em vez de todas as combinações possíveis, o resultado apresenta somente as linhas que possuem correspondência entre as chaves.
+Essa consulta retorna no máximo cinco linhas. Como não há `ORDER BY`, não há garantia de quais funcionários serão retornados nem da ordem em que aparecerão. Para escolher resultados de maneira previsível, normalmente combinamos `LIMIT` com uma ordenação.
 
-Uma junção pode ser combinada com um filtro `WHERE`. Por exemplo, para listar somente os funcionários do departamento chamado `Tecnologia`:
+### Combinando ORDER BY e LIMIT
+
+Para listar os três funcionários com maiores salários:
 
 ```sql
-SELECT f.nome AS nome_funcionario,
-       f.cargo,
-       d.nome AS nome_departamento
-FROM funcionario AS f
-INNER JOIN departamento AS d
-    ON d.id_departamento = f.id_departamento
-WHERE d.nome = 'Tecnologia';
+SELECT nome, salario
+FROM funcionario
+ORDER BY salario DESC
+LIMIT 3;
 ```
 
-### A mesma consulta usando WHERE
+`ORDER BY` organiza os salários do maior para o menor e `LIMIT 3` restringe o resultado a três linhas. Se houver empate na posição de corte — por exemplo, vários funcionários empatados no terceiro maior salário — a consulta ainda retornará no máximo três linhas. Sem outro critério de ordenação, não há garantia de qual funcionário empatado será incluído. Para tornar a escolha previsível, podemos acrescentar um critério de desempate, como `nome ASC`.
 
-O mesmo resultado poderia ser obtido usando a forma antiga, colocando as duas tabelas no `FROM` e a condição das chaves no `WHERE`:
+## Paginação com OFFSET
+
+`OFFSET` indica quantas linhas ordenadas devem ser ignoradas antes de começar a apresentar os resultados. Combinado com `LIMIT`, permite buscar uma página por vez.
+
+Para listar os funcionários em ordem alfabética, cinco por página:
 
 ```sql
-SELECT f.id_funcionario,
-       f.nome AS nome_funcionario,
-       d.id_departamento,
-       d.nome AS nome_departamento
-FROM funcionario AS f,
-     departamento AS d
-WHERE d.id_departamento = f.id_departamento;
+SELECT id_funcionario, nome, cargo, salario
+FROM funcionario
+ORDER BY nome ASC, id_funcionario ASC
+LIMIT 5 OFFSET 0;
 ```
 
-Embora as duas consultas produzam o mesmo resultado quando a condição está correta, o `INNER JOIN` torna mais clara a intenção do comando. A cláusula `ON` informa como as tabelas se relacionam, enquanto a cláusula `WHERE` fica disponível para os filtros da consulta. Essa separação facilita a leitura, a manutenção e a identificação de erros que poderiam produzir um produto cartesiano.
+Essa consulta retorna a primeira página: até cinco funcionários, ordenados pelo nome. O identificador é um critério adicional para manter a ordem definida caso existam nomes iguais.
 
-### Junções de mais de duas tabelas
-
-Podemos combinar mais de duas tabelas na mesma consulta. Para isso, adicionamos outro `INNER JOIN` e informamos a condição que relaciona a nova tabela às tabelas já presentes:
+Para obter a segunda página, ignoramos os cinco registros da primeira:
 
 ```sql
-SELECT colunas
-FROM tabela_a AS a
-INNER JOIN tabela_b AS b
-    ON b.chave = a.chave_b
-INNER JOIN tabela_c AS c
-    ON c.chave = b.chave_c;
+SELECT id_funcionario, nome, cargo, salario
+FROM funcionario
+ORDER BY nome ASC, id_funcionario ASC
+LIMIT 5 OFFSET 5;
 ```
 
-Na lista de exercícios desta aula haverá consultas que combinam três ou mais tabelas. Nesses casos, é importante identificar as chaves que conectam cada tabela e escrever uma condição de junção para cada nova tabela acrescentada.
-
-## INNER JOIN com UPDATE e DELETE
-
-As junções também podem ajudar a localizar os registros que serão alterados ou excluídos. Antes de executar esses comandos, é importante fazer uma consulta de conferência usando as mesmas condições.
-
-### UPDATE usando uma tabela relacionada
-
-Suponha que desejamos conceder um reajuste de 10% aos funcionários que pertencem a departamentos com orçamento superior a um milhão. Primeiro, podemos conferir os funcionários que serão afetados:
+Na terceira página, ignoramos os dez primeiros:
 
 ```sql
-SELECT f.nome AS nome_funcionario,
-       f.salario,
-       d.nome AS nome_departamento,
-       d.orcamento
-FROM funcionario AS f
-INNER JOIN departamento AS d
-    ON d.id_departamento = f.id_departamento
-WHERE d.orcamento > 1000000;
+SELECT id_funcionario, nome, cargo, salario
+FROM funcionario
+ORDER BY nome ASC, id_funcionario ASC
+LIMIT 5 OFFSET 10;
 ```
 
-No PostgreSQL, uma tabela relacionada pode ser usada no `UPDATE` por meio da cláusula `FROM`:
+Assim, para páginas de cinco linhas, o `OFFSET` é `0` na primeira página, `5` na segunda, `10` na terceira e assim por diante. Em geral, para buscar uma página de número `n` com `t` linhas por página, usamos `LIMIT t OFFSET (n - 1) * t`.
 
-```sql
-UPDATE funcionario AS f
-SET salario = f.salario * 1.10
-FROM departamento AS d
-WHERE d.id_departamento = f.id_departamento
-  AND d.orcamento > 1000000;
-```
+### Paginação em sites
 
-A condição que relaciona as tabelas aparece no `WHERE`, junto com a condição do orçamento. Somente os funcionários cujo departamento atende ao filtro receberão o reajuste.
+Esse recurso é muito útil na construção de sites e sistemas. Uma caixa de e-mail, por exemplo, pode mostrar dez mensagens por vez: a primeira página usa `LIMIT 10 OFFSET 0`, a segunda usa `LIMIT 10 OFFSET 10`, a terceira usa `LIMIT 10 OFFSET 20`, e assim sucessivamente.
 
-### DELETE usando uma tabela relacionada
+Em aplicações reais, a consulta também deve usar uma ordenação consistente. Caso contrário, os registros podem aparecer em páginas diferentes ou mudar de posição entre consultas.
 
-Agora suponha que desejamos excluir todos os funcionários pertencentes a departamentos com orçamento menor que mil. Primeiro, podemos consultar os registros:
+## Resumo da aula
 
-```sql
-SELECT f.id_funcionario,
-       f.nome AS nome_funcionario,
-       d.nome AS nome_departamento,
-       d.orcamento
-FROM funcionario AS f
-INNER JOIN departamento AS d
-    ON d.id_departamento = f.id_departamento
-WHERE d.orcamento < 1000;
-```
-
-No PostgreSQL, uma tabela relacionada pode ser informada no `DELETE` por meio da cláusula `USING`:
-
-```sql
-DELETE FROM funcionario AS f
-USING departamento AS d
-WHERE d.id_departamento = f.id_departamento
-  AND d.orcamento < 1000;
-```
-
-Nesse comando, a condição das chaves garante que somente os funcionários dos departamentos correspondentes sejam excluídos. O filtro do orçamento limita a operação aos departamentos com orçamento menor que mil.
-
-## Resumo
-
-O `INNER JOIN` permite consultar somente os registros que possuem correspondência entre tabelas relacionadas. A condição normalmente compara a chave primária de uma tabela com a chave estrangeira de outra.
-
-Em uma consulta com junções:
-
-- use `ON` para informar como as tabelas se relacionam;
-- use `WHERE` para aplicar filtros aos registros relacionados;
-- utilize aliases para deixar os comandos mais curtos e claros;
-- acrescente um novo `INNER JOIN` para cada tabela adicional;
-- confira os registros antes de executar `UPDATE` ou `DELETE`.
-
-Na atividade da aula 3, o mesmo banco `Loja` das atividades anteriores será usado para praticar consultas com duas, três e mais tabelas.
+- `ORDER BY` define a ordem dos resultados; use `ASC` para crescente e `DESC` para decrescente.
+- É possível ordenar por vários critérios; cada critério seguinte ajuda a desempatar o anterior.
+- `LIMIT` restringe o número máximo de linhas retornadas.
+- Sem `ORDER BY`, não há garantia sobre quais linhas um `LIMIT` retornará.
+- `OFFSET` ignora uma quantidade de linhas e, combinado com `LIMIT`, permite paginar resultados.
+- Para resultados estáveis, use critérios de ordenação que desfaçam empates, como uma chave única ao final da ordenação.

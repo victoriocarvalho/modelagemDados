@@ -4,7 +4,7 @@
 
 ## Objetivo
 
-Nesta atividade você revisará os conteúdos das dinâmicas 1 a 4 e das aulas de SQL 1 a 7:
+Nesta atividade você revisará os conteúdos das aulas de SQL 1 a 7:
 
 - leitura de um modelo lógico e criação de um banco a partir de um script SQL;
 - inserção e atualização de dados com `INSERT` e `UPDATE`;
